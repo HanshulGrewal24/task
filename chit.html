@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskPro Solutions</title>
+  <style>
+    /* CSS */
+    body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0); /* Light gradient background */
+  color: #333; /* Dark text color for better readability */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header Section */
+header {
+  background-color: #ffffff; /* White background */
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #333; /* Darker border */
+  position: fixed;
+  top: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+header h1 {
+  color: #333; /* Dark text */
+  margin-left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo img {
+  height: 50px;
+}
+
+/* Container and Dashboard Styling */
+.container, .dashboard {
+  max-width: 450px;
+  width: 100%;
+  background: #ffffff; /* White background */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+  margin-top: 80px; /* Adjusted for fixed header */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Form and Input Fields */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 8px;
+  background-color: #f9f9f9; /* Slightly off-white background for inputs */
+  color: #333; /* Dark text */
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: #ff6600; /* Orange border on focus */
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 102, 0, 0.5); /* Glow effect */
+}
+
+/* Buttons Styling */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #000000; /* Black background */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+button:hover {
+  background-color: #ff0000; /* Red background on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+button:active {
+  background-color: #cc0000; /* Darker red on click */
+  transform: scale(0.98); /* Slight shrink effect */
+}
+
+/* Task List Styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #f9f9f9; /* Light gray for task items */
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd; /* Light border for tasks */
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li button {
+  background-color: #ff0000; /* Red background */
+  border: none;
+  padding: 6px 12px;
+  color: #ffffff; /* White text */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+li button:hover {
+  background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Centering and Hiding Elements */
+.hidden {
+  display: none;
+}
+
+footer {
+  background-color: #ffffff; /* White background */
+  padding: 15px;
+  width: 100%;
+  text-align: center;
+  color: #333; /* Dark text */
+  border-top: 2px solid #333; /* Darker top border */
+  position: relative;
+  bottom: 0;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <div class="logo">
+      <img src="data:image/jpeg;base64,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" alt="TaskPro Logo">
+      <h1>Chitkara TaskPro</h1>
+    </div>
+  </header>
+
+  <!-- Login Section -->
+  <div id="loginPage" class="container">
+    <form id="loginForm">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div id="adminDashboard" class="dashboard hidden">
+    <h2>Admin Dashboard</h2>
+    <div class="task-section">
+      <h3>Task Management</h3>
+      <form id="taskForm">
+        <input type="text" id="task" placeholder="New Task" required>
+        <button type="submit">Add Task</button>
+      </form>
+      <ul id="taskList"></ul>
+    </div>
+    <button id="logoutAdmin">Logout</button>
+  </div>
+
+  <!-- Employee Dashboard -->
+  <div id="employeeDashboard" class="dashboard hidden">
+    <h2>Employee Dashboard</h2>
+    <div class="task-section">
+      <h3>Your Tasks</h3>
+      <ul id="employeeTaskList"></ul>
+    </div>
+    <button id="logoutEmployee">Logout</button>
+  </div>
+<br>
+<br>
+<br>
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 TaskPro Solutions. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Simulate local users (stored in memory for now)
+    const users = [
+      { username: 'faculty', password: 'faculty12', role: 'admin' },
+      { username: 'student', password: 'student123', role: 'employee' }
+    ];
+
+    // Retrieve or set up tasks from localStorage
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    const loginForm = document.getElementById('loginForm');
+    const adminDashboard = document.getElementById('adminDashboard');
+    const employeeDashboard = document.getElementById('employeeDashboard');
+    const loginPage = document.getElementById('loginPage');
+    const taskForm = document.getElementById('taskForm');
+    const taskList = document.getElementById('taskList');
+    const employeeTaskList = document.getElementById('employeeTaskList');
+
+    // Login functionality
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const user = users.find(u => u.username === username && u.password === password);
+      if (user) {
+        loginPage.classList.add('hidden');
+        if (user.role === 'admin') {
+          adminDashboard.classList.remove('hidden');
+          renderTasks();
+        } else {
+          employeeDashboard.classList.remove('hidden');
+          renderEmployeeTasks();
+        }
+      } else {
+        alert('Invalid credentials');
+      }
+    });
+
+    // Admin Task Management (Add Task)
+    taskForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const task = document.getElementById('task').value;
+      tasks.push(task);
+      document.getElementById('task').value = '';
+      localStorage.setItem('tasks', JSON.stringify(tasks)); // Save tasks in localStorage
+      renderTasks();
+    });
+
+    // Render Tasks for Admin with remove functionality
+    function renderTasks() {
+      taskList.innerHTML = '';
+      tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        li.textContent = task;
+
+        // Create a "Remove" button
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.style.marginLeft = '10px';
+        removeButton.onclick = () => {
+          removeTask(index);
+        };
+
+        li.appendChild(removeButton); // Add the remove button to the task item
+        taskList.appendChild(li);
+      });
+    }
+
+    // Remove task function
+    function removeTask(index) {
+      tasks.splice(index, 1); // Remove the task from the array
+      localStorage.setItem('tasks', JSON.stringify(tasks)); // Update the localStorage
+      renderTasks(); // Re-render the tasks
+    }
+
+    // Render Tasks for Employee
+    function renderEmployeeTasks() {
+      employeeTaskList.innerHTML = '';
+      tasks.forEach((task) => {
+        const li = document.createElement('li');
+        li.textContent = task;
+        employeeTaskList.appendChild(li);
+      });
+    }
+
+    // Logout functionality
+    document.getElementById('logoutAdmin').addEventListener('click', () => {
+      adminDashboard.classList.add('hidden');
+      loginPage.classList.remove('hidden');
+    });
+
+    document.getElementById('logoutEmployee').addEventListener('click', () => {
+      employeeDashboard.classList.add('hidden');
+      loginPage.classList.remove('hidden');
+    });
+  </script>
+
+</body>
+</html>
